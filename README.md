@@ -1,1 +1,1 @@
-# lab-python
+# lab-technical-note
