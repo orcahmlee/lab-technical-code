@@ -1,0 +1,5 @@
+# Visual Studio Code
+.vscode
+
+# jupyter
+.ipynb_checkpoints/
