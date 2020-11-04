@@ -1,8 +1,11 @@
 # Visual Studio Code
 .vscode
 
-# jupyter
+# Jupyter
 .ipynb_checkpoints/
 
-# python
+# Python
 __pycache__/
+
+# Miscellaneous
+*.DS_Store
