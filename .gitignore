@@ -6,6 +6,7 @@
 
 # Python
 __pycache__/
+*.sqlite3
 
 # Miscellaneous
 *.DS_Store
