@@ -10,3 +10,4 @@ __pycache__/
 
 # Miscellaneous
 *.DS_Store
+*.log
