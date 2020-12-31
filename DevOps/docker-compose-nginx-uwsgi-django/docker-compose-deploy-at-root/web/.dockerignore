@@ -1,0 +1,10 @@
+# Dev tools
+.vscode
+*.DS_Store
+*.md
+
+# git
+.git*
+
+# Python
+__pycache__/

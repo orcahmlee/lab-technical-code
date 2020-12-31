@@ -1,0 +1,44 @@
+version: '3.8'
+
+services: 
+    db:
+        image: postgres:12
+        container_name: dj3_db
+        restart: always
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=dj3
+            - POSTGRES_DB=dj3
+            - POSTGRES_PASSWORD=dj3
+    web:
+        build: ./web
+        container_name: dj3_web
+        restart: always
+        # command: [ "/bin/bash", "-c", "uwsgi --ini uwsgi.ini" ]
+        command: [ "../wait-for-it.sh", "db:5432", "--", "/bin/bash", "-c", "uwsgi --ini uwsgi.ini" ]
+        volumes:
+            # Using for production that could share the named volume for other services.
+            - web_data:/web/dj3
+        environment:
+            - PYTHONUNBUFFERED=TURE
+            - DATABASE_NAME=dj3
+            - DATABASE_USER=dj3
+            - DB_HOST=db
+    nginx:
+        build: ./nginx
+        container_name: dj3_nginx
+        restart: always
+        volumes:
+            # Using the named volume from the Django project.
+            - web_data:/web/dj3
+            # Bind the nginx's log into host machine.
+            - ./nginx/logs:/var/log/nginx
+        ports:
+            - "127.0.0.1:8000:80"
+        depends_on:
+            - web
+
+volumes:
+    pg_data:
+    web_data:
