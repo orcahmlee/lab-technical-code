@@ -10,7 +10,7 @@ services:
         environment:
             - POSTGRES_USER=dj3
             - POSTGRES_DB=dj3
-            - POSTGRES_PASSWORD=dj3
+            - POSTGRES_HOST_AUTH_METHOD=trust
     web:
         build: ./web
         container_name: dj3_web
